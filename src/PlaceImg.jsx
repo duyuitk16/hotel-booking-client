@@ -6,7 +6,7 @@ export default function PlaceImg({ place, index = 0, className = null }) {
         return '';
     }
     if (!className) {
-        className = 'object-cover';
+        className = 'h-full object-cover rounded-lg';
     }
     return (
         <img className={className} src={`${import.meta.env.VITE_BASE_URL}/uploads/${place.photos[index]}`} alt="" />

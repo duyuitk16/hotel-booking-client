@@ -2,10 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import moment from 'moment';
+import {
+    faPaperPlane, faComment
+} from "@fortawesome/free-solid-svg-icons";
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 
 import { format } from "date-fns";
 import { formatISO9075 } from "date-fns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -62,25 +66,25 @@ const Comments = ({ currentPlaceId }) => {
     }, [loadComments]);
     return (
         <div className="">
-            <h3 className="">Comments</h3>
+            <h3 className="font-bold text-2xl text-pink-700 mb-8 border-b border-gray-700"><FontAwesomeIcon icon={faComment} className="text-xl mr-2" />Comments</h3>
             <div className="comment-container">
                 {comments.length > 0 && comments.map(comment => (
                     <div key={comment._id}>
                         {PlaceId.id == comment.placeId ? (
-                            <div key={comment?._id} className="mb-10 mt-10">
+
+                            // Comment
+                            <div key={comment?._id} className="mb-8">
                                 <div className="flex gap-2 items-center">
-                                    <div className="bg-slate-600 w-10 h-10 flex justify-center items-center rounded-full">
-                                        <div>
-                                            <svg className="h-8 w-8 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                            </svg>
-                                        </div>
+                                    <div className="bg-black w-8 h-8 flex justify-center items-center rounded-full">
+                                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
                                     </div>
                                     <div className="text-xl font-bold">
                                         {comment?.commenter}
                                     </div>
-                                    <div className="mt-0 text-sm font-light">
-                                        {moment(moment?.createdAt).format("dddd, MMM DD at HH:mm a")}
+                                    <div className="text-sm font-light">
+                                        {moment(moment?.createdAt).format("HH:mm a dddd, DD MMM yyyy")}
                                     </div>
                                 </div>
                                 <div>
@@ -94,16 +98,16 @@ const Comments = ({ currentPlaceId }) => {
                     </div>
                 ))}
             </div>
-            <div>
+            <div className="font-bold">
                 Write your comment
             </div>
-            <div className="flex bg-zinc-400 w-50 rounded-lg h-10 items-center gap-5 justify-start">
-                <input className="h-5 w-96 ml-10 rounded-lg"
+            <div className="flex flex-wrap items-center justify-start py-2">
+                <input className="w-3/4 rounded-l-lg px-2"
                     value={message}
                     onChange={ev => setMessage(ev.target.value)}
                 />
-                <button className="w-14 rounded-lg" onClick={handleCreateComment}>
-                    send
+                <button className="px-4 rounded-r-lg  bg-pink-300" onClick={handleCreateComment}>
+                    <FontAwesomeIcon icon={faPaperPlane} className="" />
                 </button>
             </div>
         </div>

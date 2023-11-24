@@ -16,9 +16,9 @@ const PropertyList = () => {
         "https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-chalet_300/8ee014fcc493cb3334e25893a1dee8c6d36ed0ba.jpg",
     ];
     return (
-        <div className="flex justify-between">
+        <div className="flex justify-center flex-wrap gap-4">
             {loading ? (
-                "loading"
+                "Loading... Please wait!!!"
             ) : (
                 <>
                     {data &&
@@ -27,7 +27,7 @@ const PropertyList = () => {
                                 <img
                                     src={img}
                                     alt=""
-                                    className="w-40 h-40 rounded-t-lg"
+                                    className="w-40 h-40 rounded-lg"
                                 />
                                 <div className="">
                                     <h1 className="font-bold mt-1">{data[i]?.type}</h1>
